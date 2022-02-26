@@ -1,0 +1,62 @@
+﻿@model DESKfurniture.Models.DeskUsageViewModel
+@{
+    ViewData["Shop"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form asp-controller="Desk" asp-action="Index" method="get">
+    <p>
+        <select asp-for="DeskUsage" asp-items="Model.Usage">
+            <option value=" ">All</option>
+        </select>
+        Shop: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Desk[0].Shop)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Desk[0].Usage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Desk[0].Material)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Desk[0].Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Desk)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Shop)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Usage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Material)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <a href="/Desk/Edit/4"> Edit </a> |
+                    <a href="/Desk/Details/4"> Details </a> |
+                    <a href="/Desk/Delete/4"> Delete </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
